@@ -1,0 +1,23 @@
+.outlet-container{
+    position: relative;
+}
+.top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 50;
+}
+.outlet{
+    position: relative;
+    top: 5.3rem;
+}
+.bottom{
+    position: relative;
+    top: 5.3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items:flex-start;
+    padding: 2rem 0;
+    background-color: #0F1E64;
+}

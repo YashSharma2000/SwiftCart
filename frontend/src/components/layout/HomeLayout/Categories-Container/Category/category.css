@@ -1,0 +1,15 @@
+.category-container{
+    /* border: 1px solid; */
+    padding: 1rem;
+}
+.category-container h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 0.5rem;
+}
+.category-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    /* border: 1px solid; */
+}
