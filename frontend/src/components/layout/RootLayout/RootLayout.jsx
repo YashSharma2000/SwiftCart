@@ -28,17 +28,17 @@ function RootLayout() {
     return (
         <div className="outlet-container">
             {
-                path === '/login' || path === '/register' || path === '/dashboard' ?
+                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout'?
                     "" :
                     <div className="top">
                         <Navbar />
                     </div>
             }
-            <div className={path === '/login' || path === '/register' || path === '/dashboard' ? "" : "outlet"}>
+            <div className={path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' ? "" : "outlet"}>
                 <Outlet />
             </div>
             {
-                path === '/login' || path === '/register' || path === '/dashboard' ?
+                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' ?
                     "" :
                     <div className="bottom">
                         <Footer />

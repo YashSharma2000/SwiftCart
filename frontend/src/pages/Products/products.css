@@ -15,7 +15,7 @@
     padding: 1rem;
     box-sizing: border-box;
 }
-.circular-progress{
+.products-container .circular-progress{
     margin: 2rem 0;
 }
 .pagination{

@@ -1,15 +1,21 @@
 import './product-detail.css'
-import { useContext, useEffect, useRef } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from "react-router-dom"
 import { ProductDetailContext } from '../../../../context/ProductContext'
-import ProductDetailImage from './ProductDetailImage'
-import ReviewerAvtarImage from './ReviewerAvtarImage'
 import Slider from 'react-slick'
+import CloudinaryImg from '../../../utils/Cloudinary Image/CloudinaryImg'
+import Rating from '../../../utils/Rating/Rating'
+import DynamicRating from '../../../utils/DynamicRating/DynamicRating'
+import { CircularProgress } from '@mui/material'
+export const DynamicRatingContext = createContext()
 export default function ProductDetail() {
     const param = useParams()
     const product_id = param.id
-    const ratingInputRef = useRef()
     const reviewInputRef = useRef()
+    const [ratingValue, setRatingVal] = useState(0)
+    const [isReviewFetching, setReviewFetching] = useState(false)
+    const [reviewState, setReviewState] = useState("")
+    const [error, setError] = useState("")
     const { productDetail, dispatch } = useContext(ProductDetailContext)
     useEffect(() => {
         dispatch({
@@ -17,7 +23,7 @@ export default function ProductDetail() {
         })
         const fetchProductDetail = async () => {
             try {
-                const fetchedProduct = await fetch(`/api/v1/product/${product_id}`)
+                const fetchedProduct = await fetch(`http://localhost:4000/api/v1/product/${product_id}`)
                 const jsonProductDetail = await fetchedProduct.json()
                 dispatch({
                     type: 'PRODUCT_SUCCESS',
@@ -34,22 +40,28 @@ export default function ProductDetail() {
     }, [])
     const addReview = async (e) => {
         e.preventDefault()
-        const addedReview = await fetch('/api/v1/product/reviews', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                rating: ratingInputRef.current.value,
-                comment: reviewInputRef.current.value,
-                productId: product_id
-            }),
-            credentials: 'include'
-        })
-        try {
-            const jsonAddedReview = await addedReview.json()
-        } catch (error) {
-            console.log(error)
+        if (reviewState === "") {
+            try {
+                setReviewFetching(true)
+                const addedReview = await fetch('http://localhost:4000/api/v1/product/reviews', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        rating: ratingValue,
+                        comment: reviewInputRef.current.value,
+                        productId: product_id
+                    }),
+                    credentials: 'include'
+                })
+                const jsonAddedReview = await addedReview.json()
+                setReviewFetching(false)
+                setReviewState(jsonAddedReview.message)
+            } catch (error) {
+                setReviewFetching(false)
+                setError(error)
+            }
         }
     }
     const settings = {
@@ -66,12 +78,12 @@ export default function ProductDetail() {
                     <div className="product-detail-top">
                         <Slider {...settings} className='product-images-slider'>
                             {productDetail.productFetchedData.product.images.map((image) => {
-                                return <ProductDetailImage data={image.public_id} key={image._id} />
+                                return <CloudinaryImg public_id={image.public_id} key={image._id} />
                             })}
                         </Slider>
                         <div className="product-name">{productDetail.productFetchedData.product.name}</div>
                         <div className="product-price">Rs.{productDetail.productFetchedData.product.price}/-</div>
-                        <div className="product-rating">Rating: {productDetail.productFetchedData.product.rating}</div>
+                        <div className="product-rating"><Rating rating={productDetail.productFetchedData.product.rating} /></div>
                     </div>
                     <div className="product-detail-bottom">
                         <div className="product-description">
@@ -83,15 +95,19 @@ export default function ProductDetail() {
                         <div className="add-product-review">
                             <h2>Add Review:</h2>
                             <div className="review-form">
-                                <form onSubmit={addReview}>
+                                <form>
                                     <label>
                                         <input type="text" ref={reviewInputRef} placeholder='Add your Review' className='review-input' />
                                     </label>
-                                    <label>
-                                        Rating
-                                        <input type="text" ref={ratingInputRef} />
-                                    </label>
-                                    <button type='submit'>Add Review</button>
+                                    <DynamicRatingContext.Provider value={{ ratingValue, setRatingVal }}>
+                                        <DynamicRating />
+                                    </DynamicRatingContext.Provider>
+                                    {
+                                        error ? <div className="error">{error}</div> :
+                                            <div className={reviewState ? "review-submitted-button" : "review-submit-button"} onClick={addReview}>
+                                                {isReviewFetching ? <CircularProgress /> : reviewState ? reviewState : "Add Review"}
+                                            </div>
+                                    }
                                 </form>
                             </div>
                         </div>
@@ -103,11 +119,13 @@ export default function ProductDetail() {
                                         <div className="review" key={review.user}>
                                             <div className="reviewer-details">
                                                 <div className="reviewer-avtar">
-                                                    <ReviewerAvtarImage reviewerAvtarImage={review.avtar.public_id} />
+                                                    <CloudinaryImg public_id={review.avtar.public_id} />
                                                 </div>
-                                                <div className="reviewer-name">{review.name}</div>
+                                                <div>
+                                                    <div className="reviewer-name">{review.name}</div>
+                                                    <div className="reviewer-rating"><Rating rating={review.rating} /></div>
+                                                </div>
                                             </div>
-                                            <div className="reviewer-rating">Rating: {review.rating}</div>
                                             <div className="reviewer-comment">{review.comment}</div>
                                         </div>
                                     )

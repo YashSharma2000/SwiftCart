@@ -1,5 +1,0 @@
-.product-images-card img{
-    width: 100%;
-    height: calc(100vh - 20rem);
-    object-fit: contain;
-}

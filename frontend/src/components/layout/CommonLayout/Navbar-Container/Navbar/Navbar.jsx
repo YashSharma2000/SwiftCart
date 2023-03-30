@@ -5,12 +5,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useEffect, useRef, useState } from "react";
-import { createSearchParams, Link, useLocation, useNavigate } from "react-router-dom"
+import { createSearchParams, Link, useNavigate } from "react-router-dom"
 import { useContext } from "react";
 import { LoginContext } from "../../../../../context/LoginContext";
 import { RegisterContext } from "../../../../../context/RegisterContext";
 import { NavbarContext } from "../../../../../context/NavbarContext";
-import NavUserAvtar from "./NavbarUserAvtarImage";
+import CloudinaryImg from "../../../../utils/Cloudinary Image/CloudinaryImg";
 const Navbar = () => {
     const { loginState } = useContext(LoginContext)
     const { registerState } = useContext(RegisterContext)
@@ -62,7 +62,7 @@ const Navbar = () => {
         })
     }
     useEffect(() => {
-        if (isSearchClicked.current || navbarState.dropdownState.value!==prevDropdownState.current || navbarState.queryString.page !== prevPageState.current) {
+        if (isSearchClicked.current || navbarState.dropdownState.value !== prevDropdownState.current || navbarState.queryString.page !== prevPageState.current) {
             prevDropdownState.current = navbarState.dropdownState.value
             if (navbarState.queryString.keyword === '') {
                 if (navbarState.queryString.page === 1) {
@@ -107,36 +107,38 @@ const Navbar = () => {
     }, [navbarState.navIconState])
     useEffect(() => {
         const fetchProfileAvtar = async () => {
-            const userAvtar = await fetch('/api/v1/profile/getProfileImage', {
-                method: 'GET',
-                credentials: 'include'
-            })
-            try {
-                const jsonUserAvtar = await userAvtar.json()
-                navbarDispatch({
-                    type: 'PROFILE_AVTAR_SUCCESS',
-                    payload: {
-                        public_id: jsonUserAvtar.avtar.public_id
-                    }
-                })
-            } catch (error) {
-                navbarDispatch({
-                    type: 'PROFILE_AVTAR_FAILED',
-                    payload: {
-                        error: error
-                    }
-                })
+            if (loginState.isLoggedIn) {
+                try {
+                    const userAvtar = await fetch('http://localhost:4000/api/v1/profile/getProfileImage', {
+                        method: 'GET',
+                        credentials: 'include'
+                    })
+                    const jsonUserAvtar = await userAvtar.json()
+                    navbarDispatch({
+                        type: 'PROFILE_AVTAR_SUCCESS',
+                        payload: {
+                            public_id: jsonUserAvtar.avtar.public_id
+                        }
+                    })
+                } catch (error) {
+                    navbarDispatch({
+                        type: 'PROFILE_AVTAR_FAILED',
+                        payload: {
+                            error: error
+                        }
+                    })
+                }
             }
-            const fetchedCategories = await fetch('/api/v1/productCategories', {
-                method: 'GET'
-            })
-            try{
+            try {
+                const fetchedCategories = await fetch('http://localhost:4000/api/v1/productCategories', {
+                    method: 'GET'
+                })
                 const jsonCategories = await fetchedCategories.json()
-                const categoryArray = jsonCategories.category.map((obj, index)=>{
+                const categoryArray = jsonCategories.category.map((obj, index) => {
                     return obj.category_name
                 })
                 setCategories(categoryArray)
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
         }
@@ -146,12 +148,12 @@ const Navbar = () => {
         <>
             <div className="nav-top">
                 <div className="logo">
-                    <h1>E-Commerce</h1>
+                    <Link to='/'><h1>E-Commerce</h1></Link>
                 </div>
                 <div className="search-bar">
                     <select value={navbarState.dropdownState.value} onChange={changeHandler}>
                         <option value="All">All</option>
-                        {categories.map((category, index)=>{
+                        {categories.map((category, index) => {
                             return <option value={category} key={index}>{category}</option>
                         })}
                     </select>
@@ -172,7 +174,7 @@ const Navbar = () => {
                                     <ShoppingCartIcon style={{ color: 'white', fontSize: '2rem' }} />
                                 </div>
                                 <div className="profile-pic" onClick={toggleProfileOptions}>
-                                    {navbarState.profileAvtarState.public_id ? <NavUserAvtar avtarId={navbarState.profileAvtarState.public_id} /> : ''}
+                                    {navbarState.profileAvtarState.public_id ? <CloudinaryImg public_id={navbarState.profileAvtarState.public_id} /> : ''}
                                 </div>
                             </> : <button className="login"><Link to='/login'>Login</Link></button>
                     }
@@ -181,7 +183,7 @@ const Navbar = () => {
                             <div className="profile-options-container">
                                 <ul className="profile-options">
                                     <Link to='/dashboard' onClick={() => navbarDispatch({ type: 'CLOSE_PROFILE_OPTIONS' })}><li>Dashboard</li></Link>
-                                    <Link to='/logged-out' onClick={() => navbarDispatch({ type: 'CLOSE_PROFILE_OPTIONS' })}><li>Logout</li></Link>
+                                    <Link to='/logout' onClick={() => navbarDispatch({ type: 'CLOSE_PROFILE_OPTIONS' })}><li>Logout</li></Link>
                                 </ul>
                             </div> : ""
                     }

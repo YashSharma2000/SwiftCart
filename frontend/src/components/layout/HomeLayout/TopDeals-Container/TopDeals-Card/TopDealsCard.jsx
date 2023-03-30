@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import { NavbarContext } from '../../../../../context/NavbarContext'
-import TopDealsImage from '../Top-Deals-Image/TopDealsImage'
+import CloudinaryImg from '../../../../utils/Cloudinary Image/CloudinaryImg'
+import Rating from '../../../../utils/Rating/Rating'
 import './top-deals-card.css'
 
 function TopDealsCard({ data }) {
@@ -21,12 +22,13 @@ function TopDealsCard({ data }) {
   }
   return (
     <div className='top-deals-card' onClick={navigateToProduct}>
-      <TopDealsImage public_id={data.images[0].public_id}/>
+      <CloudinaryImg public_id={data.images[0].public_id}/>
       <div className="info">
         <span className="name">{data.name}</span>
         <span className="price">{`Rs.${(data.originalPrice).toFixed(2)}`}</span>
-        <span className="current-price">{`Rs.${(data.price).toFixed(2)}`}</span>
-        <div className="discount">{`${data.discount}% Off`}</div>
+        <span className="discount">{`${data.discount}% Off`}</span>
+        <div className="current-price">{`Rs.${(data.price).toFixed(2)}`}</div>
+        <div className="rating"><Rating rating={data.rating}/></div>
       </div>
     </div>
   )

@@ -16,10 +16,9 @@
 }
 .info{
     position: absolute;
-    background: rgb(108, 140, 43);
+    background: #629ade;
     color: white;
     width: 100%;
-    height: 5rem;
     box-sizing: border-box;
     left: 50%;
     transform: translateX(-50%) translateY(20rem);
@@ -33,12 +32,17 @@
 .top-deals-card:hover img{
     scale: 0.9;
 }
-.name{
+.info .name{
     display: block;
     /* border: 1px solid red; */
 }
-.price{
+.info .price{
     text-decoration: line-through;
+    margin-right: 0.4rem;
+}
+.info .discount{
     font-size: 0.8rem;
-    margin-right: 0.3rem;
+}
+.info .rating{
+    width: 6rem;
 }

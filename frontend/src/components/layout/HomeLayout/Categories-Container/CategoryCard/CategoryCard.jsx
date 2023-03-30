@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import { NavbarContext } from '../../../../../context/NavbarContext'
-import CategoryImage from '../CategoryImage/CategoryImage'
+import CloudinaryImg from '../../../../utils/Cloudinary Image/CloudinaryImg'
 import './category-card.css'
 
 function CategoryCard({ data }) {
-    const {navbarState, navbarDispatch} = useContext(NavbarContext)
+    const { navbarDispatch} = useContext(NavbarContext)
     const navigate = useNavigate()
     const navigateToCategory = ()=>{
         navbarDispatch({
@@ -21,7 +21,7 @@ function CategoryCard({ data }) {
     }
     return (
         <div className='category-card' onClick={navigateToCategory}>
-            <CategoryImage public_id={data.public_id}/>
+            <CloudinaryImg public_id={data.public_id}/>
             <div className="category">{data.category_name}</div>
         </div>
     )

@@ -17,6 +17,7 @@ import RestrictedRoute from "./routes/RestrictedRoutes"
 import PrivateRoute from "./routes/PrivateRoutes"
 import Dashboard from "./components/layout/DashboardLayout/Dashboard"
 import PublicRoute from "./routes/PublicRoutes"
+import Logout from "./components/auth/Logout-Container/Logout";
 const navRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} >
@@ -26,6 +27,7 @@ const navRouter = createBrowserRouter(
         <Route path={`product/:id`} element={<ProductDetail />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
+        <Route path='logout' element={<Logout />} />
       </Route>
       <Route element={<RestrictedRoute />}>
         <Route path="login" element={<Login />} />

@@ -51,8 +51,8 @@ const navbarReducer = (state, action) => {
                     error: state.profileAvtarState.error
                 }
             })
-        case 'OPEN_PROFILE_OPTIONS': 
-            return({
+        case 'OPEN_PROFILE_OPTIONS':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -68,8 +68,8 @@ const navbarReducer = (state, action) => {
                     error: state.profileAvtarState.error
                 }
             })
-        case 'CLOSE_PROFILE_OPTIONS': 
-            return({
+        case 'CLOSE_PROFILE_OPTIONS':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -85,8 +85,8 @@ const navbarReducer = (state, action) => {
                     error: state.profileAvtarState.error
                 }
             })
-        case 'SET_QUERY_STRING': 
-            return({
+        case 'SET_QUERY_STRING':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -102,8 +102,8 @@ const navbarReducer = (state, action) => {
                     error: state.profileAvtarState.error
                 }
             })
-        case 'PROFILE_AVTAR_SUCCESS': 
-            return({
+        case 'PROFILE_AVTAR_SUCCESS':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -119,8 +119,8 @@ const navbarReducer = (state, action) => {
                     error: false
                 }
             })
-        case 'PROFILE_AVTAR_FAILED': 
-            return({
+        case 'PROFILE_AVTAR_FAILED':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -136,8 +136,8 @@ const navbarReducer = (state, action) => {
                     error: action.payload.error
                 }
             })
-        case 'PREVIOUS_PAGE': 
-            return({
+        case 'PREVIOUS_PAGE':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value
@@ -153,8 +153,8 @@ const navbarReducer = (state, action) => {
                     error: state.profileAvtarState.error
                 }
             })
-        case 'NEXT_PAGE': 
-            return({
+        case 'NEXT_PAGE':
+            return ({
                 navIconState: state.navIconState,
                 dropdownState: {
                     value: state.dropdownState.value

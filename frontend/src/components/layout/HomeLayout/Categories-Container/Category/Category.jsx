@@ -1,19 +1,26 @@
 import './category.css'
 import CategoryCard from '../CategoryCard/CategoryCard'
 import { useEffect, useState } from 'react'
+import { CircularProgress } from '@mui/material'
+import AlertError from '../../../../utils/Error/AlertError'
 
 function Category() {
     const [categories, setCategories] = useState([])
+    const [iSFetching, setFetching] = useState(false)
+    const [error, setError] = useState(false)
     useEffect(() => {
         const fetchCategories = async () => {
-            const fetchedCategories = await fetch('/api/v1/productCategories', {
-                method: 'GET'
-            })
+            setFetching(true)
             try {
+                const fetchedCategories = await fetch('http://localhost:4000/api/v1/productCategories', {
+                    method: 'GET'
+                })
                 const jsonCategories = await fetchedCategories.json()
                 setCategories(jsonCategories.category)
+                setFetching(false)
             } catch (error) {
-                console.log(error)
+                setFetching(false)
+                setError(error.message)
             }
         }
         fetchCategories()
@@ -24,9 +31,16 @@ function Category() {
     return (
         <div className='category-container'>
             <h2>Shop by Categories</h2>
-            <div className="category-list">
-                {categoryList}
-            </div>
+            {error ?
+                <AlertError error={error} /> :
+                <div className="categories">
+                    {iSFetching ?
+                        <CircularProgress className='circular-progress'/> :
+                        <div className="category-list">
+                            {categoryList}
+                        </div>}
+                </div>
+            }
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import './login.css'
 import CircularProgress from '@mui/material/CircularProgress'
-import { useRef, useContext, useEffect } from 'react'
+import { useRef, useContext } from 'react'
 import { LoginContext } from '../../../context/LoginContext'
 import {Link} from 'react-router-dom'
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
         e.preventDefault()
         loginDispatch({ type: 'LOGIN_START' })
         try {
-            const rawUserData = await fetch('/api/v1/loginUser', {
+            const rawUserData = await fetch('http://localhost:4000/api/v1/loginUser', {
                 method: 'POST',
                 body: JSON.stringify({
                     email: emailRef.current.value,

@@ -2,9 +2,13 @@ import "./top-deals.css"
 import TopDealsCard from "../TopDeals-Card/TopDealsCard";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { Alert, CircularProgress } from "@mui/material";
+import AlertError from "../../../../utils/Error/AlertError";
 
 function TopDeals() {
     const [topDeals, setTopDeals] = useState([])
+    const [isFetching, setFetching] = useState(false)
+    const [error, setError] = useState(false)
     const settings = {
         dots: true,
         infinite: false,
@@ -14,14 +18,17 @@ function TopDeals() {
     };
     useEffect(() => {
         const fetchTopDeals = async () => {
-            const fetchedTopDeals = await fetch('/api/v1/topDeals', {
-                method: 'GET'
-            })
-            try{
+            setFetching(true)
+            try {
+                const fetchedTopDeals = await fetch('http://localhost:4000/api/v1/topDeals', {
+                    method: 'GET'
+                })
                 const jsonTopDeals = await fetchedTopDeals.json()
                 setTopDeals(jsonTopDeals.topDeals)
-            }catch(error){
-                console.log(error)  
+                setFetching(false)
+            } catch (error) {
+                setError(error.message)
+                setFetching(false)
             }
         }
         fetchTopDeals()
@@ -29,11 +36,19 @@ function TopDeals() {
     return (
         <div className="top-deals-container">
             <h2>Top Deals</h2>
-            <Slider {...settings}>
-                {topDeals.map((product)=>{
-                    return <TopDealsCard data={product} key={product._id}/>
-                })}
-            </Slider>
+            {error ?
+                <AlertError error={error}/> :
+                <div className="top-deals">
+                    {isFetching ?
+                        <CircularProgress className="circular-progress" /> :
+                        <Slider {...settings}>
+                            {topDeals.map((product) => {
+                                return <TopDealsCard data={product} key={product._id} />
+                            })}
+                        </Slider>
+                    }
+                </div>
+            }
         </div>
     )
 }

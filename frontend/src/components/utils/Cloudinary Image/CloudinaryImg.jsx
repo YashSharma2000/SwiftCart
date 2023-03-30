@@ -3,7 +3,7 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 
 
-export default function AvatarImg({profileImage}){
+export default function CloudinaryImg({public_id}){
 
     // Create and configure your Cloudinary instance.
     const cld = new Cloudinary({
@@ -12,11 +12,11 @@ export default function AvatarImg({profileImage}){
         }
     });
     // Use the image with public ID, 'front_face'.
-    const userImage = cld.image(profileImage);
+    const Image = cld.image(public_id);
     // Render the transformed image in a React component.
     return (
         <>
-            <AdvancedImage cldImg={userImage} />
+            <AdvancedImage cldImg={Image} />
         </>
     )
 };

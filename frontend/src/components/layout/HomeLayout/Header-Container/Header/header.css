@@ -1,7 +1,7 @@
 .header-container{
     width: calc(100vw - 14rem);
     height: calc(100vh - 10rem);
-    margin: 1rem auto;
+    margin: 1.4rem auto;
     /* border: 10px solid black; */
 }
 .slick-prev::before, .slick-next::before{

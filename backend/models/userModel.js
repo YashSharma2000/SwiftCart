@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is a required field"],
         minLength: [8, "Password must be atleast 8 characters long"],
-        select: false     //this will help us in including or excluding the password field using + or - prefix along with the name of "password" field inside select() method 
+        select: true     //this will help us in including or excluding the password field using + or - prefix along with the name of "password" field inside select() method 
     },
     avtar: {
         //we will get a public_id of image when we upload it on cloud
