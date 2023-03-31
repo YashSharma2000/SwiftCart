@@ -46,7 +46,7 @@ export default function NavbarOverlay() {
                 <div className={nav4Class}></div>
             </div>
             <div className="navlist-container">
-                <h1 className={headingClass}>E-Commerce</h1>
+                <h1 className={headingClass}>SwiftCart</h1>
                 <ul className="navlist">
                     <NavLink to="/" className={navlink1Class} onClick={closeNavOverlay}>Home</NavLink>
                     <NavLink to="/products" className={navlink2Class} onClick={closeNavOverlay}>Products</NavLink>

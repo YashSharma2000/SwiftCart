@@ -1,10 +1,10 @@
 import "./footer.css"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 export default function Footer() {
     return (
         <>
             <div className="footer-left">
-                <h2>ECommerce</h2>
+                <Link to='/'><h2>SwiftCart</h2></Link>
                 <ul className="navigation-footer-list">
                     <NavLink to="/" className="footer-links">Home</NavLink>
                     <NavLink to="/products" className="footer-links">Products</NavLink>

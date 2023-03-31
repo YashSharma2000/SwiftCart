@@ -148,7 +148,7 @@ const Navbar = () => {
         <>
             <div className="nav-top">
                 <div className="logo">
-                    <Link to='/'><h1>E-Commerce</h1></Link>
+                    <Link to='/'><h1>SwiftCart</h1></Link>
                 </div>
                 <div className="search-bar">
                     <select value={navbarState.dropdownState.value} onChange={changeHandler}>
