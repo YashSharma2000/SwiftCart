@@ -12,7 +12,7 @@ function Logout() {
                 type: 'LOGOUT_START',
             })
             try {
-                const fetchedLogout = await fetch("https://e-commerce-frontend-yinf.onrender.com/api/v1/logoutUser", {
+                const fetchedLogout = await fetch("https://e-commerce-backend-y30k.onrender.com/api/v1/logoutUser", {
                     method: 'GET',
                     credentials: 'include'
                 })

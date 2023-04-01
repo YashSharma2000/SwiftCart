@@ -20,7 +20,7 @@ function TopDeals() {
         const fetchTopDeals = async () => {
             setFetching(true)
             try {
-                const fetchedTopDeals = await fetch('https://e-commerce-frontend-yinf.onrender.com/api/v1/topDeals', {
+                const fetchedTopDeals = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/topDeals', {
                     method: 'GET'
                 })
                 const jsonTopDeals = await fetchedTopDeals.json()

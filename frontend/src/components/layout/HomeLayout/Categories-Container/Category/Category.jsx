@@ -12,7 +12,7 @@ function Category() {
         const fetchCategories = async () => {
             setFetching(true)
             try {
-                const fetchedCategories = await fetch('https://e-commerce-frontend-yinf.onrender.com/api/v1/productCategories', {
+                const fetchedCategories = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/productCategories', {
                     method: 'GET'
                 })
                 const jsonCategories = await fetchedCategories.json()

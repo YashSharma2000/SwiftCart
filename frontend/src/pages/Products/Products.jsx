@@ -22,7 +22,7 @@ function Products() {
           type: 'FETCHING_PRODUCTS',
         })
         try {
-          const productsData = await fetch(`https://e-commerce-frontend-yinf.onrender.com/api/v1/products`)
+          const productsData = await fetch(`https://e-commerce-backend-y30k.onrender.com/api/v1/products`)
           const jsonProductsData = await productsData.json()
           const totalProducts = jsonProductsData.filteredLength
           const resultsPerPage = jsonProductsData.resultsPerPage
@@ -50,7 +50,7 @@ function Products() {
         dispatch({
           type: 'FETCHING_PRODUCTS',
         })
-        const productsData = await fetch(`https://e-commerce-frontend-yinf.onrender.com/api/v1/products?page=${queryString.get('page') || 1}&keyword=${queryString.get('keyword') ? encodedKeyword : ''}${queryString.get('category') && queryString.get('category') !== 'All' ? '&category=' + encodedCategory : ''}`)
+        const productsData = await fetch(`https://e-commerce-backend-y30k.onrender.com/api/v1/products?page=${queryString.get('page') || 1}&keyword=${queryString.get('keyword') ? encodedKeyword : ''}${queryString.get('category') && queryString.get('category') !== 'All' ? '&category=' + encodedCategory : ''}`)
         const jsonProductsData = await productsData.json()
         const totalProducts = jsonProductsData.filteredLength
         const resultsPerPage = jsonProductsData.resultsPerPage
