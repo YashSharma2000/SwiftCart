@@ -23,7 +23,7 @@ export default function ProductDetail() {
         })
         const fetchProductDetail = async () => {
             try {
-                const fetchedProduct = await fetch(`http://localhost:4000/api/v1/product/${product_id}`)
+                const fetchedProduct = await fetch(`https://e-commerce-frontend-yinf.onrender.com/api/v1/product/${product_id}`)
                 const jsonProductDetail = await fetchedProduct.json()
                 dispatch({
                     type: 'PRODUCT_SUCCESS',
@@ -43,7 +43,7 @@ export default function ProductDetail() {
         if (reviewState === "") {
             try {
                 setReviewFetching(true)
-                const addedReview = await fetch('http://localhost:4000/api/v1/product/reviews', {
+                const addedReview = await fetch('https://e-commerce-frontend-yinf.onrender.com/api/v1/product/reviews', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

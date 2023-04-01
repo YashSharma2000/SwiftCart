@@ -11,7 +11,7 @@ export default function Login() {
         e.preventDefault()
         loginDispatch({ type: 'LOGIN_START' })
         try {
-            const rawUserData = await fetch('http://localhost:4000/api/v1/loginUser', {
+            const rawUserData = await fetch('https://e-commerce-frontend-yinf.onrender.com/api/v1/loginUser', {
                 method: 'POST',
                 body: JSON.stringify({
                     email: emailRef.current.value,
