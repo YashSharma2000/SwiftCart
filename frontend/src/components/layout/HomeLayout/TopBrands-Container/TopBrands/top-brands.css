@@ -17,3 +17,14 @@
     margin: 1rem 0;
     padding: 1rem 0;
 }
+@media screen and (max-width: 768px) {
+    .top-brands-container{
+        margin-top: 4rem;
+        margin-bottom: 0;
+        padding: 1rem 2.4rem;
+    }
+    .top-brands-container h2{
+        margin: 0;
+        padding: 0;
+    }
+}

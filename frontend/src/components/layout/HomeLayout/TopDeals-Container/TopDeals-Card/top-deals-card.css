@@ -46,3 +46,12 @@
 .info .rating{
     width: 6rem;
 }
+@media screen and (max-width: 768px) {
+    .info{
+        font-size: 0.8rem;
+        padding: 0.8rem;
+    }
+    .info .rating{
+        width: 4rem;
+    }
+}

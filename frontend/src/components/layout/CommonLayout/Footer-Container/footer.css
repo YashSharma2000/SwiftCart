@@ -60,3 +60,29 @@
     color: white;
     padding: 1rem;
 }
+
+@media screen and (max-width: 768px) {
+    .footer-left h2, .footer-mid h2, .footer-right h2{
+        font-size: 1.2rem;
+    }
+    .footer-links, .follow-links, .address{
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 550px) {
+    .footer-left{
+        flex: 1 0 50%;
+        padding: 1rem 0;
+        text-align: center;
+    }
+    .footer-mid{
+        flex: 1 1 50%;
+        padding: 1rem 0;
+        text-align: center;
+    }
+    .footer-right{
+        padding: 1rem 0;
+        flex: 0 0 50%;
+        text-align: center;
+    }
+}

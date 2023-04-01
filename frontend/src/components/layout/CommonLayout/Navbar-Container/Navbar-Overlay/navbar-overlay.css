@@ -2,6 +2,7 @@
     position: relative;
     z-index: 10;
 }
+
 .nav1,
 .nav2,
 .nav3,
@@ -12,6 +13,7 @@
     width: 100vw;
     height: calc(100vh/4);
 }
+
 .navlist-container {
     position: relative;
     transform: translateY(-200%);
@@ -24,28 +26,28 @@
     z-index: 10;
     /* border: 1px solid green; */
 }
-.heading{
+
+.heading {
     position: relative;
     /* border: 1px solid black; */
     color: white;
     font-size: 3.5rem;
     text-align: center;
 }
-.navlist{
+
+.navlist {
     /* border: 1px solid red; */
     position: relative;
+    width: 80%;
     display: flex;
-    justify-content: center;
-    margin: 4rem 0;
+    justify-content: space-around;
+    margin: 4rem auto;
 }
 
 .navlink1,
 .navlink2,
 .navlink3,
 .navlink4 {
-    display: inline-block;
-    width: 5rem;
-    margin: 0 2rem;
     text-decoration: none;
     font-size: 1.4rem;
     color: white;
@@ -57,18 +59,23 @@
 .nav1.opening {
     animation: openingAnimation 200ms linear both 800ms
 }
+
 .nav2.opening {
     animation: openingAnimation 200ms linear both 500ms
 }
+
 .nav3.opening {
     animation: openingAnimation 200ms linear both 200ms
 }
+
 .nav4.opening {
     animation: openingAnimation 200ms linear both
 }
-.heading.openHeading{
+
+.heading.openHeading {
     animation: openHeadingAnimation 1s both 1.8s;
 }
+
 .navlink1.openLink {
     animation: openNavlink 500ms linear both 1s;
 }
@@ -101,7 +108,8 @@
 .nav4.closing {
     animation: closingAnimation 300ms linear both 400ms
 }
-.heading.closeHeading{
+
+.heading.closeHeading {
     animation: closeHeadingAnimation 1s both;
 }
 
@@ -126,18 +134,22 @@
     from {
         transform: translateX(100vw);
     }
+
     to {
         transform: translateX(0);
     }
 }
+
 @keyframes closingAnimation {
     from {
         transform: translateX(0)
     }
+
     to {
         transform: translateX(100vw);
     }
 }
+
 @keyframes openNavlink {
     from {
         transform: translateY(0);
@@ -147,6 +159,7 @@
         transform: translateY(100vh);
     }
 }
+
 @keyframes closeNavlink {
     from {
         transform: translateY(100vh);
@@ -156,25 +169,60 @@
         transform: translateY(0);
     }
 }
+
 @keyframes openHeadingAnimation {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(0);
     }
-    50%{
+
+    50% {
         opacity: 0;
         transform: translateY(100vh);
     }
-    100%{
+
+    100% {
         opacity: 1;
         transform: translateY(100vh);
     }
 }
+
 @keyframes closeHeadingAnimation {
-    0%{
+    0% {
         transform: translateY(100vh);
     }
-    100%{
+
+    100% {
         transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .navlink1,
+    .navlink2,
+    .navlink3,
+    .navlink4 {
+        font-size: 0.9rem;
+    }
+}
+@media screen and (max-width: 550px) {
+    .heading {
+        font-size: 1.6rem;
+    }
+    .navlist{
+        margin: 1rem 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navlink1,
+    .navlink2,
+    .navlink3,
+    .navlink4 {
+        font-size: 0.8rem;
+        margin: 1rem 0;
     }
 }

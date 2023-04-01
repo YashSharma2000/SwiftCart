@@ -1,5 +1,5 @@
 .products-card-container {
-    width: calc((100% / 3) - 4.5rem);
+    width: 20rem;
     height: 30rem;
     margin: 1rem auto;
     transition: scale 500ms;
@@ -15,6 +15,7 @@
     background-color: #629ade;
     border-radius: 0.5rem;
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .products-card-container:hover{

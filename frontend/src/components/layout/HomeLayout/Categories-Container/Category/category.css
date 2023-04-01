@@ -24,3 +24,11 @@
     display: block;
     margin: 2rem auto;
 }
+
+@media screen and (max-width: 768px) {
+    .category-container h2{
+        margin: 0;
+        padding: 0.6rem 0;
+        font-size: 1.8rem;
+    }
+}

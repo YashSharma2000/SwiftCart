@@ -35,3 +35,9 @@
 .top-brands-card:hover img{
     scale: 0.9;
 }
+
+@media screen and (max-width: 768px) {
+    .brand-info{
+        font-size: 0.8rem;
+    }
+}

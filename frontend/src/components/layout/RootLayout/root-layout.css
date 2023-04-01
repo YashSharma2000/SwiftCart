@@ -21,3 +21,17 @@
     padding: 2rem 0;
     background-color: #0F1E64;
 }
+
+@media screen and (max-width:768px) {
+    .bottom{
+        padding: 1rem 0;
+    }
+}
+@media screen and (max-width: 550px) {
+    .bottom{
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+}
