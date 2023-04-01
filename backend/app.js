@@ -8,6 +8,7 @@ const userRouter = require('./routes/userRoute')
 const errorMiddleware = require('./middlewares/error')
 const orderRouter = require('./routes/orderRoute')
 
+//Now for allowing cross origin requests we need cors module
 app.use(cors({
     origin: "https://e-commerce-frontend-yinf.onrender.com",
     credentials: true
@@ -15,9 +16,11 @@ app.use(cors({
 app.use(express.json({limit: '50mb'}))                                //It is an inbuilt middleware to parse the request JSON payloads. It is being used as a global middleware because it will mount on every path
 app.use(express.urlencoded({extended: true, limit: '50mb'}))
 app.use(cookieParser())
-//Now for allowing cross origin requests we need cors module
+
 
 //Routes
+// -- Index Route
+app.use(express.static('public'))
 // -- Product Routes
 app.use('/api/v1', productRouter)
 //-- User Routes

@@ -8,12 +8,12 @@ const {isUserAuthenticated, authoriseRoles} = require('../middlewares/auth')
 productRouter.get('/products', getAllProducts)
 productRouter.get('/productCategories', getProductCategories)
 productRouter.get('/topDeals', getTopDeals)
-productRouter.post('/admin/product/new', isUserAuthenticated , authoriseRoles("admin"), createProduct)   //-- admin only
-productRouter.put('/admin/product/:id', isUserAuthenticated , authoriseRoles("admin"), updateProduct)    //-- admin only
-productRouter.delete('/admin/product/:id', isUserAuthenticated , authoriseRoles("admin"), deleteProduct) //-- admin only
 productRouter.get('/product/:id', getProductDetails)
 productRouter.put('/product/reviews', isUserAuthenticated, addProductReview)
 productRouter.get('/product/reviews/:id', isUserAuthenticated, getAllReviews)
 productRouter.delete('/product/reviews/delete', isUserAuthenticated, deleteReview)
+productRouter.post('/admin/product/new', isUserAuthenticated , authoriseRoles("admin"), createProduct)   //-- admin only
+productRouter.put('/admin/product/:id', isUserAuthenticated , authoriseRoles("admin"), updateProduct)    //-- admin only
+productRouter.delete('/admin/product/:id', isUserAuthenticated , authoriseRoles("admin"), deleteProduct) //-- admin only
 
 module.exports = productRouter
