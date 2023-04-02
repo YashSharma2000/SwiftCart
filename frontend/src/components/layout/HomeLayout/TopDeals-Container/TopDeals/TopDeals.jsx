@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Alert, CircularProgress } from "@mui/material";
 import AlertError from "../../../../utils/Error/AlertError";
+import MODE from "../../../../../mode";
 
 function TopDeals() {
     const [topDeals, setTopDeals] = useState([])
@@ -31,7 +32,7 @@ function TopDeals() {
         const fetchTopDeals = async () => {
             setFetching(true)
             try {
-                const fetchedTopDeals = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/topDeals', {
+                const fetchedTopDeals = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/topDeals`, {
                     method: 'GET'
                 })
                 const jsonTopDeals = await fetchedTopDeals.json()

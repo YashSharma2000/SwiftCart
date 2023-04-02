@@ -3,6 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { useRef, useContext } from 'react'
 import { LoginContext } from '../../../context/LoginContext'
 import {Link} from 'react-router-dom'
+import MODE from '../../../mode'
 export default function Login() {
     const { loginState, loginDispatch } = useContext(LoginContext)
     const emailRef = useRef()
@@ -11,7 +12,7 @@ export default function Login() {
         e.preventDefault()
         loginDispatch({ type: 'LOGIN_START' })
         try {
-            const rawUserData = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/loginUser', {
+            const rawUserData = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/loginUser`, {
                 method: 'POST',
                 body: JSON.stringify({
                     email: emailRef.current.value,

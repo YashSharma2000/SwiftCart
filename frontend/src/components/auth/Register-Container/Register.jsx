@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { RegisterContext } from '../../../context/RegisterContext'
 import CircularProgress from '@mui/material/CircularProgress'
 import './register.css'
+import MODE from '../../../mode'
 export default function Register() {
     const nameRef = useRef()
     const emailRef = useRef()
@@ -12,7 +13,7 @@ export default function Register() {
         e.preventDefault()
         registerDispatch({type: 'REGISTER_START'})
         try{
-            const registeredUser = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/registerUser', {
+            const registeredUser = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/registerUser`, {
                 method: 'POST',
                 body: JSON.stringify({
                     name: nameRef.current.value,

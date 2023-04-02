@@ -7,6 +7,7 @@ import CloudinaryImg from '../../../utils/Cloudinary Image/CloudinaryImg'
 import Rating from '../../../utils/Rating/Rating'
 import DynamicRating from '../../../utils/DynamicRating/DynamicRating'
 import { CircularProgress } from '@mui/material'
+import MODE from '../../../../mode'
 export const DynamicRatingContext = createContext()
 export default function ProductDetail() {
     const param = useParams()
@@ -23,7 +24,7 @@ export default function ProductDetail() {
         })
         const fetchProductDetail = async () => {
             try {
-                const fetchedProduct = await fetch(`https://e-commerce-backend-y30k.onrender.com//api/v1/product/${product_id}`)
+                const fetchedProduct = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/product/${product_id}`)
                 const jsonProductDetail = await fetchedProduct.json()
                 dispatch({
                     type: 'PRODUCT_SUCCESS',
@@ -43,7 +44,7 @@ export default function ProductDetail() {
         if (reviewState === "") {
             try {
                 setReviewFetching(true)
-                const addedReview = await fetch('https://e-commerce-backend-y30k.onrender.com//api/v1/product/reviews', {
+                const addedReview = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/product/reviews`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

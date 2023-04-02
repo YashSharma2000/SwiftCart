@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LoginContext } from '../../../context/LoginContext'
 import './logout.css'
+import MODE from '../../../mode'
 
 function Logout() {
     const [logout_message, setLogoutMessage] = useState("")
@@ -12,7 +13,7 @@ function Logout() {
                 type: 'LOGOUT_START',
             })
             try {
-                const fetchedLogout = await fetch("https://e-commerce-backend-y30k.onrender.com/api/v1/logoutUser", {
+                const fetchedLogout = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/logoutUser`, {
                     method: 'GET',
                     credentials: 'include'
                 })

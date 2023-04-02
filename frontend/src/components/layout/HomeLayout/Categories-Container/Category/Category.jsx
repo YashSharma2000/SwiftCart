@@ -3,6 +3,7 @@ import CategoryCard from '../CategoryCard/CategoryCard'
 import { useEffect, useState } from 'react'
 import { CircularProgress } from '@mui/material'
 import AlertError from '../../../../utils/Error/AlertError'
+import MODE from '../../../../../mode'
 
 function Category() {
     const [categories, setCategories] = useState([])
@@ -12,7 +13,7 @@ function Category() {
         const fetchCategories = async () => {
             setFetching(true)
             try {
-                const fetchedCategories = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/productCategories', {
+                const fetchedCategories = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/productCategories`, {
                     method: 'GET'
                 })
                 const jsonCategories = await fetchedCategories.json()

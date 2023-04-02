@@ -5,7 +5,6 @@ import LoginContextProvider from './context/LoginContext';
 import NavbarContextProvider from './context/NavbarContext';
 import { AllProductsContextProvider, ProductDetailContextProvider } from './context/ProductContext';
 import RegisterContextProvider from './context/RegisterContext';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RegisterContextProvider>

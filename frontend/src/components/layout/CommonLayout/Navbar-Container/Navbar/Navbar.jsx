@@ -11,6 +11,7 @@ import { LoginContext } from "../../../../../context/LoginContext";
 import { RegisterContext } from "../../../../../context/RegisterContext";
 import { NavbarContext } from "../../../../../context/NavbarContext";
 import CloudinaryImg from "../../../../utils/Cloudinary Image/CloudinaryImg";
+import MODE from "../../../../../mode";
 const Navbar = () => {
     const { loginState } = useContext(LoginContext)
     const { registerState } = useContext(RegisterContext)
@@ -109,7 +110,7 @@ const Navbar = () => {
         const fetchProfileAvtar = async () => {
             if (loginState.isLoggedIn) {
                 try {
-                    const userAvtar = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/profile/getProfileImage', {
+                    const userAvtar = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/profile/getProfileImage`, {
                         method: 'GET',
                         credentials: 'include'
                     })
@@ -130,7 +131,7 @@ const Navbar = () => {
                 }
             }
             try {
-                const fetchedCategories = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/productCategories', {
+                const fetchedCategories = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/productCategories`, {
                     method: 'GET'
                 })
                 const jsonCategories = await fetchedCategories.json()

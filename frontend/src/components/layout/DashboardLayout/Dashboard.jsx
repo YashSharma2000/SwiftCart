@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import './dashboard.css'
 import CloudinaryImg from '../../utils/Cloudinary Image/CloudinaryImg';
+import MODE from '../../../mode';
 export default function Dashboard() {
     const profileNameRef = useRef()
     const profileEmailRef = useRef()
@@ -56,12 +57,12 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchProfileData = async () => {
-            const fetchedProfile = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/profile', {
+            const fetchedProfile = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/profile`, {
                 credentials: 'include'
             })
             const jsonProfileData = await fetchedProfile.json()
             setProfile(jsonProfileData.user)
-            const fetchedProfileImage = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/profile/getProfileImage', {
+            const fetchedProfileImage = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/profile/getProfileImage`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -83,7 +84,7 @@ export default function Dashboard() {
 
     const updateProfile = async () => {
         if (previewImage !== '') {
-            const updatedAvatarFetched = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/profile/uploadAvatar', {
+            const updatedAvatarFetched = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/profile/uploadAvatar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -101,7 +102,7 @@ export default function Dashboard() {
                 console.log(error)
             }
         }
-        const updatedProfile = await fetch('https://e-commerce-backend-y30k.onrender.com/api/v1/profile/update', {
+        const updatedProfile = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/profile/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

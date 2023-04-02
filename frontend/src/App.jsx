@@ -18,6 +18,7 @@ import PrivateRoute from "./routes/PrivateRoutes"
 import Dashboard from "./components/layout/DashboardLayout/Dashboard"
 import PublicRoute from "./routes/PublicRoutes"
 import Logout from "./components/auth/Logout-Container/Logout";
+
 const navRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} >
@@ -38,10 +39,10 @@ const navRouter = createBrowserRouter(
       </Route>
     </Route>
   )
-)
-function App() {
-  return (
-    <div className="appContainer">
+  )
+  function App() {
+    return (
+      <div className="appContainer">
       <div className="root-layout-container">
         <RouterProvider router={navRouter} />
       </div>
