@@ -26,9 +26,14 @@
 }
 
 @media screen and (max-width: 768px) {
+    .category-container{
+        padding: 1rem 0;
+        width: calc(100% - 2rem);
+    }
     .category-container h2{
         margin: 0;
         padding: 0.6rem 0;
         font-size: 1.8rem;
+        text-align: center;
     }
 }

@@ -34,3 +34,15 @@
         padding: 0;
     }
 }
+@media screen and (max-width: 550px) {
+    .top-deals-container{
+        width: calc(100% - 2rem);
+        margin-top: 4rem;
+        margin-bottom: 0;
+        padding: 1rem 2.4rem;
+    }
+    .top-deals-container h2{
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -43,3 +43,14 @@
     cursor: default;
 }
 
+@media screen and (max-width:768px) {
+    .products-content-bottom{
+        padding: 0;
+    }
+}
+@media screen and (max-width:550px) {
+    .products-content-bottom{
+        margin: 2rem 0;
+        padding: 0;
+    }
+}
