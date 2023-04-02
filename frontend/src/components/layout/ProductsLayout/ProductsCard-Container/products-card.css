@@ -16,7 +16,6 @@
     background-color: #629ade;
     border-radius: 0.5rem;
     box-sizing: border-box;
-    /* flex-shrink: 0; */
 }
 
 .products-card-container:hover{
@@ -85,6 +84,9 @@
     .product-card-image img{
         transition: none;
     }
+    .products-card-container:hover{
+        scale: 1;
+    }
     .products-card-container:hover .product-card-image img{
         scale: 1;
     }
@@ -111,6 +113,9 @@
     }
     .product-card-image img{
         transition: none;
+    }
+    .products-card-container:hover{
+        scale: 1;
     }
     .products-card-container:hover .product-card-image img{
         scale: 1;
