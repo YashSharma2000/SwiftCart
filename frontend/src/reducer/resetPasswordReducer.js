@@ -8,7 +8,7 @@ const resetPasswordReducer = (state, action) => {
             }
         case 'RESET_PASSWORD_SUCCESS':
             return {
-                fetchedData: action.payload.message,
+                fetchedData: action.payload.user,
                 isFetching: false,
                 error: false
             }

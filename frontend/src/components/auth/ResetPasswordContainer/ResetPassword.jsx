@@ -27,12 +27,11 @@ function ResetPassword() {
                 })
             })
             const jsonResetUser = await fetchedResetUser.json()
-            console.log(jsonResetUser)
             if(jsonResetUser.success){
                 resetPasswordDispatch({
                     type: 'RESET_PASSWORD_SUCCESS',
                     payload: {
-                        message: jsonResetUser.message
+                        user: fetchedResetUser
                     }
                 })
             }else{
