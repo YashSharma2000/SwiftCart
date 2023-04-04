@@ -48,7 +48,7 @@ export default function Login() {
     }
     return (
         <div className="login-container">
-            <h1>Add here Name of app with proper css</h1>
+            <h1>SwiftCart</h1>
             <form onSubmit={submitForm}>
                 <label>
                     Email
@@ -61,8 +61,9 @@ export default function Login() {
                 <button type="submit" className='login-button'>{loginState.isFetching ? <CircularProgress size="12px" /> : "Login"}</button>
             </form>
             {loginState.error ? <div className="error">{loginState.error}</div> : ""}
-            <div className="forgot-password">Put the forgot password link here</div>
-            <Link to='/register'>Register New User</Link>
+            <Link to='/forgot-password'>Forgot Password?</Link>
+            <Link to='/register'>Register New User!</Link>
+            <Link to='/'>Go Back to Home</Link>
         </div>
     )
 }

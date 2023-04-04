@@ -1,5 +1,5 @@
 import './root-layout.css'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation, useParams } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { LoginContext } from '../../../context/LoginContext'
 import Navbar from "../CommonLayout/Navbar-Container/Navbar/Navbar";
@@ -10,6 +10,7 @@ function RootLayout() {
     const path = location.pathname
     const { loginState, loginDispatch } = useContext(LoginContext)
     const { registerState } = useContext(RegisterContext)
+    const params = useParams()
     useEffect(() => {
         const persistLoginState = JSON.parse(window.localStorage.getItem('LOGIN_STATE'))
         if (persistLoginState && persistLoginState.fetchedUserData !== null) {
@@ -28,17 +29,17 @@ function RootLayout() {
     return (
         <div className="outlet-container">
             {
-                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout'?
+                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' || path === '/forgot-password' || path === `/resetPassword/${params.token}`?
                     "" :
                     <div className="top">
                         <Navbar />
                     </div>
             }
-            <div className={path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' ? "" : "outlet"}>
+            <div className={path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' || path === '/forgot-password' || path === `/resetPassword/${params.token}` ? "" : "outlet"}>
                 <Outlet />
             </div>
             {
-                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' ?
+                path === '/login' || path === '/register' || path === '/dashboard' || path === '/logout' || path === '/forgot-password' || path === `/resetPassword/${params.token}` ?
                     "" :
                     <div className="bottom">
                         <Footer />

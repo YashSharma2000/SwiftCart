@@ -53,7 +53,7 @@ exports.logoutUser = catchAsyncError(async (req, res, next) => {
 //-- forgot password
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     //find the user with email entered by user to reset password
-    const user = await User.findOne({ email: req.body.email })
+    const user = await User.findOne({ email:req.body.email })
     //if user is not found throw an error
     if (!user) {
         return next(new ErrorHandler(404, "User with this email is not found"))
@@ -64,7 +64,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
     //but we need to save the user document in the database with this new schema field updates
     await user.save({ validateBeforeSave: false })  //validate  before save is going to skip pre save hook execution. Otherwise the next() middleware will run  
     //prepare an email message 
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/resetPassword/${resetToken}`
+    const resetPasswordUrl = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`
     const emailMessage = `Hello, ${user.name}, 
      Your reset Password token is: ${resetPasswordUrl} 
      Please do not share it with anyone. It is only valid for 15 min`

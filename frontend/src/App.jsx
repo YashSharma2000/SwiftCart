@@ -18,6 +18,8 @@ import PrivateRoute from "./routes/PrivateRoutes"
 import Dashboard from "./components/layout/DashboardLayout/Dashboard"
 import PublicRoute from "./routes/PublicRoutes"
 import Logout from "./components/auth/Logout-Container/Logout";
+import ForgotPassword from "./components/auth/Forgot-Password-Container/ForgotPassword";
+import ResetPassword from "./components/auth/ResetPasswordContainer/ResetPassword";
 
 const navRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +35,8 @@ const navRouter = createBrowserRouter(
       <Route element={<RestrictedRoute />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="resetPassword/:token" element= {<ResetPassword />} />
       </Route>
       <Route element={<PrivateRoute />}>
         <Route path='dashboard' element={<Dashboard />} />

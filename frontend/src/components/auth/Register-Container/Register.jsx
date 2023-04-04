@@ -47,7 +47,7 @@ export default function Register() {
     }
     return (
         <div className="register-container">
-            <h1>Add here Name of app with proper css</h1>
+            <h1>SwiftCart</h1>
             <form onSubmit={submitHandler}>
                 <label>
                     Name
@@ -65,6 +65,7 @@ export default function Register() {
             </form>
             {registerState.error? <div className="error-message">{registerState.error}</div>: ""}
             <Link to='/login'>Login here</Link>
+            <Link to='/'>Go Back to Home</Link>
         </div>
     )
 }
