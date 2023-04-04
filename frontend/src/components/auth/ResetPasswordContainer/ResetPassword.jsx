@@ -30,14 +30,14 @@ function ResetPassword() {
             console.log(jsonResetUser)
             if(jsonResetUser.success){
                 resetPasswordDispatch({
-                    type: 'FORGOT_PASSWORD_SUCCESS',
+                    type: 'RESET_PASSWORD_SUCCESS',
                     payload: {
                         message: jsonResetUser.message
                     }
                 })
             }else{
                 resetPasswordDispatch({
-                    type: 'FORGOT_PASSWORD_FAILURE',
+                    type: 'RESET_PASSWORD_FAILURE',
                     payload: {
                         err: jsonResetUser.error
                     }
@@ -45,7 +45,7 @@ function ResetPassword() {
             }
         }catch(error){
             resetPasswordDispatch({
-                type: 'FORGOT_PASSWORD_FAILURE',
+                type: 'RESET_PASSWORD_FAILURE',
                 payload: {
                     err: error
                 }
