@@ -3,7 +3,7 @@ import './reset-password.css'
 import { CircularProgress } from '@mui/material'
 import MODE from '../../../mode'
 import { ResetPasswordContext } from '../../../context/ResetPasswordContext'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function ResetPassword() {
     const newPasswordRef = useRef()
@@ -13,6 +13,9 @@ function ResetPassword() {
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
+            resetPasswordDispatch({
+                type: 'RESET_PASSWORD_START'
+            })
             const fetchedResetUser = await fetch(`${MODE === 'DEVELOPMENT' ?'http://localhost:4000':'https://e-commerce-backend-y30k.onrender.com'}/api/v1/password/resetPassword/${params.token}`, {
                 method: 'PUT',
                 headers: {
@@ -63,7 +66,7 @@ function ResetPassword() {
                 </label>
                 <button type="submit" className='reset-password-button'>{resetPasswordState.isFetching ? <CircularProgress size="12px" /> : "Reset Password"}</button>
             </form>
-            {resetPasswordState.fetchedData ? <div className='confirmation-message'>{resetPasswordState.fetchedData}</div>: ""}
+            {resetPasswordState.fetchedData ? <div className='confirmation-message'>Password Reset successfully. Click to <Link to='/login'>Login</Link></div>: ""}
             {resetPasswordState.error ? <div className="error-message">{resetPasswordState.error}</div> : ""}
         </div>
     )
